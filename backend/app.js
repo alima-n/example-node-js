@@ -29,7 +29,7 @@ mongoose
   });
 
 app.get("/", (_, res) => {
-  res.send("Foo World!");
+  res.send("Hello World!");
 });
 
 app.use("/api", [authRouter, devicesRouter]);

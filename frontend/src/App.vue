@@ -4,7 +4,7 @@
       <v-toolbar-title>Vue 2 + Vuetify + Vite</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="logout">
+      <v-btn v-if="localStorage.getItem('access_token')" icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
