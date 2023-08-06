@@ -37,6 +37,7 @@ export default defineComponent({
 
         this.setTokenData(data.token)
         this.$router.push({ name: 'devices' })
+        this.$emit('login')
       } catch (error) {
         this.errorMessage = (error.response && error.response.data.message) || error.message
       }

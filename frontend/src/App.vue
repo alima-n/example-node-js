@@ -4,13 +4,13 @@
       <v-toolbar-title>Vue 2 + Vuetify + Vite</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-btn v-if="localStorage.getItem('access_token')" icon @click="logout">
+      <v-btn v-if="isAuth" icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
     <div class="page">
       <transition name="fade-custom" mode="out-in">
-        <router-view></router-view>
+        <router-view @login="isAuth = true"></router-view>
       </transition>
     </div>
   </v-app>
@@ -23,6 +23,11 @@ import { RouterView } from 'vue-router'
 export default defineComponent({
   name: 'App',
   components: { RouterView },
+  data() {
+    return {
+      isAuth: false,
+    }
+  },
   methods: {
     logout() {
       localStorage.removeItem('access_token')
@@ -30,6 +35,11 @@ export default defineComponent({
 
       this.$router.push({ name: 'login' })
     },
+  },
+  onMounted() {
+    if (localStorage.getItem('access_token')) {
+      this.isAuth = true
+    }
   },
 })
 </script>
